@@ -41,7 +41,7 @@ with cent_co:
 ###########################
 
 
-bird'index'list = {"Abert's Towhee Bird": 0,
+bird_index_list = {"Abert's Towhee Bird": 0,
  "Acorn Woodpecker Bird": 1,
  "Allen's Hummingbird Bird": 2,
  "American Avocet Bird": 3,
