@@ -8,7 +8,7 @@ from tensorflow.keras.preprocessing import image
 from keras.applications.resnet_v2 import preprocess_input, decode_predictions
 
 st.write("""
-# Bird Species Classification Tool
+# Birds of San Diego
 The goal of this tool is to quickly predict a bird species based on a single image. \n
 To run a prediction, upload a photo and click "Predict"
 """)
