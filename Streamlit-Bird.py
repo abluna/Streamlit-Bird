@@ -46,64 +46,64 @@ bird_index_list = stbrd.create_bird_index_list()
 bird_link_df = stbrd.create_bird_image_links()
 
 click_predict_message = "Predict Bird Species"
-with cent_co:
-    if img is not None:
-        if st.button(click_predict_message):
-            with st.spinner("Wait for it..."):
 
-                # Use the function to load your data
-                bird_model = load_model()
+if img is not None:
+    if st.button(click_predict_message):
+        with st.spinner("Wait for it..."):
 
-                tf_model = bird_model
-                index_list = bird_index_list
-                targ_size = 800
+            # Use the function to load your data
+            bird_model = load_model()
 
-                 # `img` is a PIL image of size 224x224
-                img_v2 = image.load_img(img, target_size=(targ_size, targ_size))
+            tf_model = bird_model
+            index_list = bird_index_list
+            targ_size = 800
 
-                # `x` is a float32 Numpy array of shape (300, 300, 3)
-                x = image.img_to_array(img_v2)
+             # `img` is a PIL image of size 224x224
+            img_v2 = image.load_img(img, target_size=(targ_size, targ_size))
 
-                # We add a dimension to transform our array into a "batch"
-                # of size (1, 300, 300, 3)
-                x = np.expand_dims(x, axis=0)
+            # `x` is a float32 Numpy array of shape (300, 300, 3)
+            x = image.img_to_array(img_v2)
 
-                # Finally we preprocess the batch
-                # (this does channel-wise color normalization)
-                x = preprocess_input(x)
+            # We add a dimension to transform our array into a "batch"
+            # of size (1, 300, 300, 3)
+            x = np.expand_dims(x, axis=0)
 
-                preds = tf_model.predict(x)
+            # Finally we preprocess the batch
+            # (this does channel-wise color normalization)
+            x = preprocess_input(x)
 
-                ## Get list of predictions
-                pred_dict = dict(zip(index_list, np.round(preds[0]*100,2)))
-                Sorted_Prediction_Dictionary = sorted(pred_dict.items(), key=lambda x: x[1], reverse=True)
+            preds = tf_model.predict(x)
 
-                Count_5Perc = preds[0][preds[0]>0.02]
+            ## Get list of predictions
+            pred_dict = dict(zip(index_list, np.round(preds[0]*100,2)))
+            Sorted_Prediction_Dictionary = sorted(pred_dict.items(), key=lambda x: x[1], reverse=True)
 
-                if len(Count_5Perc) == 1:
-                    TopPredictions = Sorted_Prediction_Dictionary[0]
-                    to_df = list(TopPredictions)
-                    df = pd.DataFrame({"Species": to_df[0], "Probability":to_df[1]}, index=[0])
-                if len(Count_5Perc) > 1:
-                    TopPredictions = Sorted_Prediction_Dictionary[0:len(Count_5Perc)]
-                    df = pd.DataFrame(TopPredictions, columns =["Species", "Probability"])
+            Count_5Perc = preds[0][preds[0]>0.02]
 
-                df["Probability"] = df["Probability"].round(2)
-                df = df.merge(bird_link_df, how="left", on="Species")
-                df['Species'] = df['Species'].str.slice(0, -5)
+            if len(Count_5Perc) == 1:
+                TopPredictions = Sorted_Prediction_Dictionary[0]
+                to_df = list(TopPredictions)
+                df = pd.DataFrame({"Species": to_df[0], "Probability":to_df[1]}, index=[0])
+            if len(Count_5Perc) > 1:
+                TopPredictions = Sorted_Prediction_Dictionary[0:len(Count_5Perc)]
+                df = pd.DataFrame(TopPredictions, columns =["Species", "Probability"])
 
-                # st.dataframe(
-                #     df,
-                #     column_config={
-                #         "name": "App name",
-                #         "Probability": st.column_config.NumberColumn(
-                #             "Probability",
-                #             format="%.2f%%"),
-                #         "Link": st.column_config.ImageColumn("Image", width='small')
-                #     },
-                #     hide_index=True
-                # )
+            df["Probability"] = df["Probability"].round(2)
+            df = df.merge(bird_link_df, how="left", on="Species")
+            df['Species'] = df['Species'].str.slice(0, -5)
 
+            # st.dataframe(
+            #     df,
+            #     column_config={
+            #         "name": "App name",
+            #         "Probability": st.column_config.NumberColumn(
+            #             "Probability",
+            #             format="%.2f%%"),
+            #         "Link": st.column_config.ImageColumn("Image", width='small')
+            #     },
+            #     hide_index=True
+            # )
+            with cent_co:
                 st.image(list(df["Link"]), caption = list(df["Species"]), width = 200)
 
 
