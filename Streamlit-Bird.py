@@ -31,11 +31,11 @@ def load_model():
 
 img = st.file_uploader("Upload the image", type=None)
 
-left_co,cent_co,last_co = st.columns(3)
+left_co,cent_co,last_co = st.columns(spec = [0.2,0.6,0.2])
 with cent_co:   
     if img is not None:
         original_image = Image.open(img)
-        st.image(original_image, caption="Your Image", width = 250)
+        st.image(original_image, caption="Your Image", use_container_width=True)
  
 ###########################
 ## Importing Keras Model ##
