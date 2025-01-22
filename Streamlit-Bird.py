@@ -104,6 +104,7 @@ if img is not None:
             #     hide_index=True
             # )
             with cent_co:
+                st.divider()
                 st.markdown(":gray[*Predicted Bird Species (with % certainty).*]")
                 st.image(list(df["Link"]), caption = list(df["Species"]), width = 200)
 
