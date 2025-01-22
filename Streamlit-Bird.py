@@ -106,7 +106,7 @@ if img is not None:
             )
             '''
 
-            st.image(list(df.link))
+            st.image(list(df["Link"]))
 
 
 
