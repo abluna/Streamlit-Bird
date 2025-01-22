@@ -556,10 +556,14 @@ def create_bird_index_list():
          "Yellow-throated Vireo Bird": 554,
          "Yellow-throated Warbler Bird": 555,
          "Zone-tailed Hawk Bird": 556}
-    return bird_index_list
+         
+	return bird_index_list
     
 def create_bird_image_links():
-    bird_links = {"Abert's Towhee Bird":"https://ab4bucket.s3.us-east-2.amazonaws.com/Abert_s+Towhee+Bird.jpg",
+
+	import pandas as pd
+
+	bird_links = {"Abert's Towhee Bird":"https://ab4bucket.s3.us-east-2.amazonaws.com/Abert_s+Towhee+Bird.jpg",
                     "Acorn Woodpecker Bird":"https://ab4bucket.s3.us-east-2.amazonaws.com/Acorn+Woodpecker+Bird.jpg",
                     "Allen's Hummingbird Bird":"https://ab4bucket.s3.us-east-2.amazonaws.com/Allen_s+Hummingbird+Bird.jpg",
                     "American Avocet Bird":"https://ab4bucket.s3.us-east-2.amazonaws.com/American+Avocet+Bird.jpg",
@@ -1117,4 +1121,13 @@ def create_bird_image_links():
                     "Yellow-throated Warbler Bird":"https://ab4bucket.s3.us-east-2.amazonaws.com/Yellow-throated+Warbler+Bird.jpg",
                     "Zone-tailed Hawk Bird":"https://ab4bucket.s3.us-east-2.amazonaws.com/Zone-tailed+Hawk+Bird.jpg"}
 
-    return bird_links
+	bird_links_df = pd.DataFrame.from_dict(bird_links, orient='index').reset_index()
+	bird_links_df.columns = ['Species', 'Link']
+
+	return bird_links_df
+    
+    
+    
+    
+    
+    
