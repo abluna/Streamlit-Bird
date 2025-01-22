@@ -92,21 +92,20 @@ if img is not None:
             df = df.merge(bird_link_df, how="left", on="Species")
             df['Species'] = df['Species'].str.slice(0, -5)
 
-            '''
-            st.dataframe(
-                df,
-                column_config={
-                    "name": "App name",
-                    "Probability": st.column_config.NumberColumn(
-                        "Probability",
-                        format="%.2f%%"),
-                    "Link": st.column_config.ImageColumn("Image", width='small')
-                },
-                hide_index=True
-            )
-            '''
+            # st.dataframe(
+            #     df,
+            #     column_config={
+            #         "name": "App name",
+            #         "Probability": st.column_config.NumberColumn(
+            #             "Probability",
+            #             format="%.2f%%"),
+            #         "Link": st.column_config.ImageColumn("Image", width='small')
+            #     },
+            #     hide_index=True
+            # )
 
-            st.image(list(df["Link"]))
+
+            st.image(list(df["Link"]), width = 200)
 
 
 
