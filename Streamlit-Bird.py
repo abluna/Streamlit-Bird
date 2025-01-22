@@ -92,6 +92,11 @@ if img is not None:
             df = df.merge(bird_link_df, how="left", on="Species")
             df['Species'] = df['Species'].str.slice(0, -5)
 
+            ## Get species and probability formatted
+
+            df['Probability'] = df['Probability'].apply(lambda x: f'{:.1%}')
+            df['Caption'] = df['Species'] + ' (' + df['Probability'] + ')'
+
             # st.dataframe(
             #     df,
             #     column_config={
@@ -106,7 +111,7 @@ if img is not None:
             with cent_co:
                 st.divider()
                 st.markdown("##### :gray[Predicted Bird Species (with % certainty):]")
-                st.image(list(df["Link"]), caption = list(df["Species"]), width = 200)
+                st.image(list(df["Link"]), caption = list(df["Caption"]), width = 200)
 
 
 
