@@ -94,7 +94,7 @@ if img is not None:
 
             ## Get species and probability formatted
 
-            df['Probability'] = df['Probability'].apply(lambda x: f'{:.1%}')
+            df['Probability'] = df['Probability'].apply(lambda x: f"{x:.1%}")
             df['Caption'] = df['Species'] + ' (' + df['Probability'] + ')'
 
             # st.dataframe(
