@@ -10,8 +10,8 @@ from keras.applications.resnet_v2 import preprocess_input, decode_predictions
 
 st.write("""
 # Birds of San Diego
-The goal of this tool is to quickly predict a bird species based on a single image. \n
-To run a prediction, upload a photo and click "Predict"
+The goal of this tool is to quickly predict a bird species based on a single image. The underlying model was trained on birds typically found in the San Diego County area which includes around 550 bird species. \n
+To run a prediction, upload a photo of a bird (try to ensure it's clear and only includres one species) and click "Predict"
 """)
 
 ######################
