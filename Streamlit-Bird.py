@@ -90,7 +90,7 @@ if img is not None:
             
             df["Probability"] = df["Probability"].round(2)
             df = df.merge(bird_link_df, how="left", on="Species")
-            df['species'] = df['species'].str.slice(0, -5)
+            df['Species'] = df['Species'].str.slice(0, -5)
 
             st.dataframe(
             df,
