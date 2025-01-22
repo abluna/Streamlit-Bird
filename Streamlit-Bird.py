@@ -97,8 +97,8 @@ if img is not None:
                 "name": "App name",
                 "Probability": st.column_config.NumberColumn(
                     "Probability",
-                    format="%.2f%%"
-                )
+                    format="%.2f%%"),
+                "Link": st.column_config.ImageColumn("Image")
             },
             hide_index=True,
         )
