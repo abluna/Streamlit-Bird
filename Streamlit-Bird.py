@@ -101,6 +101,7 @@ if img is not None:
                 "Link": st.column_config.ImageColumn("Image", width='large')
             },
             hide_index=True,
+            height=200
         )
 
 
