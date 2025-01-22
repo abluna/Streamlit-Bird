@@ -104,6 +104,7 @@ if img is not None:
             #     hide_index=True
             # )
             with cent_co:
+                st.write("Predicted Bird Special (including % certainty)")
                 st.image(list(df["Link"]), caption = list(df["Species"]), width = 200)
 
 
