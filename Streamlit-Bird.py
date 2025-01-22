@@ -98,10 +98,9 @@ if img is not None:
                 "Probability": st.column_config.NumberColumn(
                     "Probability",
                     format="%.2f%%"),
-                "Link": st.column_config.ImageColumn("Image", width='medium')
+                "Link": st.column_config.ImageColumn("Image", width='small')
             },
-            hide_index=True,
-            height=400
+            hide_index=True
         )
 
 
